@@ -1,33 +1,25 @@
-export default function handler(req, res) {
+export default async function handler(req, res) {
   try {
-    const { name = "guest", birth = "unknown", time = "unknown" } = req.query;
+    const fortunes = [
+      "Great wealth is coming to you.",
+      "Your destiny will change in 30 days.",
+      "A powerful ally will appear.",
+      "A major financial breakthrough is near.",
+      "Your past struggle is ending.",
+      "You will rise higher than those who doubted you."
+    ]
 
-    const today = new Date().toISOString().split("T")[0];
+    const fortune = fortunes[Math.floor(Math.random() * fortunes.length)]
 
-    const result = {
-      date: today,
-      name,
-      birth,
-      time,
-      energy: Math.floor(Math.random() * 100),
-      wealth: Math.floor(Math.random() * 100),
-      career: Math.floor(Math.random() * 100),
-      relationship: Math.floor(Math.random() * 100),
-      health: Math.floor(Math.random() * 100),
-      do: [
-        "Act before hesitation grows",
-        "Make one bold decision",
-        "Trust your instinct"
-      ],
-      avoid: [
-        "Avoid emotional spending",
-        "Do not argue with partners"
-      ],
-      diary: "Today the flow of fate is quietly shifting in your favor."
-    };
-
-    res.status(200).json(result);
+    res.status(200).json({
+      success: true,
+      fortune,
+      timestamp: new Date().toISOString()
+    })
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error: err.message
+    })
   }
 }
