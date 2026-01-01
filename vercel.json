@@ -1,0 +1,12 @@
+
+yong bom <yongbom2023@gmail.com>
+4:00 PM (0 minutes ago)
+to me
+
+{
+  "functions": {
+    "api/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}
